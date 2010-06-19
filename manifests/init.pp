@@ -14,13 +14,14 @@ class kmod {
                     "kmod_$title":
                         context => "/files/etc/modules",
                         changes => "set entry[last()+1] $name",
-                        onlyif  => "match entry[.='$name'] size == 0";
+                        onlyif  => "match entry[.='$name'] size == 0",
+                        notify  => Exec["modprobe_$title"];
                 }
 
                 exec {
                     "modprobe_$title":
-                        command => "/sbin/modprobe ${name}",
-                        unless  => "/usr/bin/test -d /sys/module/${name}";
+                        command     => "/sbin/modprobe ${name} || :",
+                        refreshonly => true;
                 }
             }
             default: {
