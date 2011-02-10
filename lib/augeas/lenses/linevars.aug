@@ -1,5 +1,5 @@
 (* Linevars module for Augeas
- Author: Rafal Kupka <kupson@kupson.fdns.net>
+ Author: Rafal Kupka <kupson@kupson.net>
 
 *)
 
