@@ -24,8 +24,15 @@ class kmod {
                         refreshonly => true;
                 }
             }
+            "absent": {
+                augeas {
+                    "kmod_$title":
+                        context => "/files/etc/modules",
+                        changes => "rm entry[.='$name']";
+                }
+            }
             default: {
-                fail("kmod class only loads modules, ensure:$ensure is wrong")
+                fail("kmod class ensure:$ensure is wrong")
             }
         }
 
