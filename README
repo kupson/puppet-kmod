@@ -1,0 +1,24 @@
+Puppet[1] module for /etc/modules file.
+
+Requires:
+  - augeas to be installed (http://www.augeas.net) - ruby-augeas bindings
+  - include load path /var/lib/puppet/lib/augeas/lenses in Augeas global
+    defaults
+
+In site.pp (or other containing global defaults):
+Augeas {
+  load_path => "/var/lib/puppet/lib/augeas/lenses",
+}
+
+Usage:
+
+  class sample {
+    include "kmod"
+    ...
+    kmod::add_module {
+      "tun":    ensure => present;
+      "nvidia": ensure => absent; 
+    }
+  }
+
+[1] http://www.puppetlabs.com/puppet/introduction/
