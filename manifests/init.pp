@@ -13,8 +13,8 @@ class kmod {
                 augeas {
                     "kmod_$title":
                         context => "/files/etc/modules",
-                        incl    => "/files/etc/modules",
-                        lens    => "linevars.aug",
+                        incl    => "/etc/modules",
+                        lens    => "Linevars.lns",
                         changes => "set entry[last()+1] $name",
                         onlyif  => "match entry[.='$name'] size == 0",
                         notify  => Exec["modprobe_$title"];
@@ -30,8 +30,8 @@ class kmod {
                 augeas {
                     "kmod_$title":
                         context => "/files/etc/modules",
-                        incl    => "/files/etc/modules",
-                        lens    => "linevars.aug",
+                        incl    => "/etc/modules",
+                        lens    => "Linevars.lns",
                         changes => "rm entry[.='$name']";
                 }
             }
